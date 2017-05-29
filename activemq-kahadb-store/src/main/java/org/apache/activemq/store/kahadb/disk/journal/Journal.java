@@ -682,7 +682,7 @@ public class Journal {
     }
 
     DataFile getDataFile(Location item) throws IOException {
-        Integer key = Integer.valueOf(item.getDataFileId());
+        Integer key = item.getDataFileId();
         DataFile dataFile = null;
         synchronized (currentDataFile) {
             dataFile = fileMap.get(key);
@@ -870,7 +870,7 @@ public class Journal {
                 if (dataFile == null) {
                     return null;
                 } else {
-                    cur.setDataFileId(dataFile.getDataFileId().intValue());
+                    cur.setDataFileId(dataFile.getDataFileId());
                     cur.setOffset(0);
                     if (limit != null && cur.compareTo(limit) >= 0) {
                         LOG.trace("reached limit: {} at: {}", limit, cur);
@@ -1009,7 +1009,7 @@ public class Journal {
 
     public DataFile getDataFileById(int dataFileId) {
         synchronized (currentDataFile) {
-            return fileMap.get(Integer.valueOf(dataFileId));
+            return fileMap.get(dataFileId);
         }
     }
 
